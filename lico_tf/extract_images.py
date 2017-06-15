@@ -5,9 +5,15 @@ import matplotlib.pyplot as plt
 from mnist import input_data
 from PIL import Image
 
+<<<<<<< HEAD
 test_dir = 'data/test/'
 if not os.path.exists(test_dir):
     os.mkdir(test_dir)
+=======
+# test_dir = os.path.join(os.path, 'data')
+test_dir = 'data/test/'
+# os.mkdir(test_dir)
+>>>>>>> c7b2b12fd5eec125c19867dae9e83e7fcf621e4e
 test_file = open(os.path.join(test_dir, 'test.txt'), 'w')
 
 mnist = input_data.read_data_sets('../data/mnist_data', one_hot=True)
@@ -24,7 +30,11 @@ for index in range(num_examples):
     label = str(np.argmax(labels[index]))
 
     img_name = 'test_%s.png' % index
+<<<<<<< HEAD
     dirname = test_dir + label
+=======
+    dirname = 'data/test/' + label
+>>>>>>> c7b2b12fd5eec125c19867dae9e83e7fcf621e4e
     if not os.path.exists(dirname):
         os.mkdir(dirname)
 
