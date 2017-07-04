@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from mnist import input_data
 from PIL import Image
 
-train_dir = 'data/train/'
+train_dir = 'y_data/train/'
 if not os.path.exists(train_dir):
     os.mkdir(train_dir)
 train_file = open(os.path.join(train_dir, 'train.txt'), 'w')
@@ -15,7 +15,7 @@ images = mnist.train.images
 labels = mnist.train.labels
 num_examples = mnist.train.num_examples
 
-for index in range(num_examples):
+for index in range(2):
 
     item = np.reshape(images[index], [28, 28])
     item = item * 255

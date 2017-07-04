@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from mnist import input_data
 from PIL import Image
 
-test_dir = 'data/test/'
+test_dir = 'y_data/test/'
 if not os.path.exists(test_dir):
     os.mkdir(test_dir)
 test_file = open(os.path.join(test_dir, 'test.txt'), 'w')
@@ -15,7 +15,7 @@ images = mnist.test.images
 labels = mnist.test.labels
 num_examples = mnist.test.num_examples
 
-for index in range(num_examples):
+for index in range(2):
 
     item = np.reshape(images[index], [28, 28])
     item = item * 255

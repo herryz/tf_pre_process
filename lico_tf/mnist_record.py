@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import tensorflow as tf
 
-files = tf.train.match_filenames_once("output/validation-*")
+files = tf.train.match_filenames_once("output/data/train-*")
 # files = tf.train.match_filenames_once("Records/output.tfrecords")
 filename_queue = tf.train.string_input_producer(files, shuffle=False)
 

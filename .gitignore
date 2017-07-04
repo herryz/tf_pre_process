@@ -1,2 +1,7 @@
-/lico_tf/data
+lico_tf/data
+lico_tf/output
 *.tar
+*.png
+*.jpg
+*.gz
+*.pyc

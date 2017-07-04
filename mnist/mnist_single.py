@@ -1,4 +1,4 @@
-# import input_data
+import input_data
 # import tensorflow as tf
 #
 #
