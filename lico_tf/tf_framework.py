@@ -53,7 +53,7 @@ dataset_args_default = {
     "image_size": 28,
     "topology": "Lenet",
 
-    "data_dir": "t_data",
+    "data_dir": "data",
     "working_dir": "output",
 
     "train_shards": 1,

@@ -5,3 +5,5 @@ lico_tf/output
 *.jpg
 *.gz
 *.pyc
+*.pickle
+*.txt

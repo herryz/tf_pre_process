@@ -37,7 +37,7 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_boolean('fake_data', False, 'If true, uses fake data '
                      'for unit testing.')
-flags.DEFINE_integer('max_steps', 1000, 'Number of steps to run trainer.')
+flags.DEFINE_integer('max_steps', 10000, 'Number of steps to run trainer.')
 flags.DEFINE_float('learning_rate', 0.01, 'Initial learning rate.')
 
 
@@ -58,16 +58,16 @@ def main(_):
     y = tf.nn.softmax(tf.matmul(x, W) + b)
 
   # Add summary ops to collect data
-  _ = tf.histogram_summary('weights', W)
-  _ = tf.histogram_summary('biases', b)
-  _ = tf.histogram_summary('y', y)
+  _ = tf.summary.histogram('weights', W)
+  _ = tf.summary.histogram('biases', b)
+  _ = tf.summary.histogram('y', y)
 
   # Define loss and optimizer
   y_ = tf.placeholder(tf.float32, [None, 10], name='y-input')
   # More name scopes will clean up the graph representation
   with tf.name_scope('xent'):
     cross_entropy = -tf.reduce_sum(y_ * tf.log(y))
-    _ = tf.scalar_summary('cross entropy', cross_entropy)
+    _ = tf.summary.scalar('cross entropy', cross_entropy)
   with tf.name_scope('train'):
     train_step = tf.train.GradientDescentOptimizer(
         FLAGS.learning_rate).minimize(cross_entropy)
@@ -75,11 +75,11 @@ def main(_):
   with tf.name_scope('test'):
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-    _ = tf.scalar_summary('accuracy', accuracy)
+    _ = tf.summary.scalar('accuracy', accuracy)
 
   # Merge all the summaries and write them out to /tmp/mnist_logs
-  merged = tf.merge_all_summaries()
-  writer = tf.train.SummaryWriter('/tmp/mnist_logs', sess.graph_def)
+  merged = tf.summary.merge_all()
+  writer = tf.summary.FileWriter('/tmp/mnist_logs', sess.graph_def)
   tf.initialize_all_variables().run()
 
   # Train the model, and feed in test data and record summaries every 10 steps
